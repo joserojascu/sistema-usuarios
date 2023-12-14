@@ -1,0 +1,28 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th (click)="sortTable('cca3')"><i class="fa fa-sort-up"> </i>ID</th>
+        <th (click)="sortTable('capital')">Nombre</th>
+        <th (click)="sortTable('population')">Apellido</th>
+        <th (click)="sortTable('population')">Años</th>
+        <th (click)="sortTable('population')">Celular</th>
+        <th (click)="sortTable('population')">Genero</th>
+        <th (click)="sortTable('population')">Rol</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{users[i].id}}</td>
+        <td>{{users[i].firstName}}</td>
+        <td>{{users[i].lastName}}</td>
+        <td>{{users[i].age}}</td>
+        <td>{{users[i].phone}}</td>
+        <td>{{users[i].gender}}</td>
+        <td>{{users[i].role}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
