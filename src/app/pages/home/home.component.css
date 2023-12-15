@@ -1,0 +1,13 @@
+.contenedor {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 4em; /* Tamaño grande del título */
+    margin-bottom: 20px; /* Espacio inferior */
+  }
+  
+  p {
+    font-size: 1.5em; /* Tamaño del texto */
+    color: #555; /* Color del texto */
+  }

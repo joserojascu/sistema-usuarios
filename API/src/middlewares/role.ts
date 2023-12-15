@@ -16,8 +16,8 @@ export const checkRole = (roles: Array<string>) => {
     }
 
     //Check
-    const { role } = user;
-    if (roles.includes(role)) {
+    const { rol } = user;
+    if (roles.includes(rol)) {
       next();
     } else {
       res.status(401).json({ message: 'Not Authorized' });

@@ -7,6 +7,7 @@ import { validate } from 'class-validator';
 
 import * as jwt from 'jsonwebtoken';
 import config from "../config/config";
+import { getRepository } from "typeorm";
 
 
 
@@ -67,6 +68,34 @@ export class UserController {
       next(error);
     }
   }
+  
+  async edit(req: Request, res: Response, next: NextFunction) {
+    try {
+      const id = parseInt(req.params.id);
+      const { firstName, lastName, age, phone, gender, rol, password } = req.body;
+
+      const userToUpdate = await this.userRepository.findOne({ where: { id } });
+
+      if (!userToUpdate) {
+        res.status(404).json({ message: "Usuario no está registrado" });
+      }
+
+      userToUpdate.firstName = firstName || userToUpdate.firstName;
+      userToUpdate.lastName = lastName || userToUpdate.lastName;
+      userToUpdate.age = age || userToUpdate.age;
+      userToUpdate.phone = phone || userToUpdate.phone;
+      userToUpdate.gender = gender || userToUpdate.gender;
+      userToUpdate.rol = rol || userToUpdate.rol;
+      userToUpdate.password = password || userToUpdate.password;
+
+      await this.userRepository.save(userToUpdate);
+
+      res.json({ message: "Usuario ha sido actualizado correctamente" });
+    } catch (error) {
+      next(error);
+    }
+  }
+
 
   async remove(request: Request, response: Response, next: NextFunction) {
     try {
@@ -97,11 +126,11 @@ export class UserController {
 
         if (isPasswordValid) {
           const userId = user.id;
-          const role = user.role;
+          const rol = user.rol;
           const token = jwt.sign({userId: user.id, username:user.firstName}, config.jwtSecret,{expiresIn:'1h'});
           response
             .status(200)
-            .json({ message: "Inicio de sesión exitoso", token, userId,role  });
+            .json({ message: "Inicio de sesión exitoso", token, userId,rol  });
 
            
         } else {

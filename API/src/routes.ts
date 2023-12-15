@@ -29,11 +29,20 @@ export const Routes = [{
     action: "login" // Acción para manejar la autenticación
   },
   {
+    method: "patch", // Método POST para enviar los datos del inicio de sesión
+    route: "/users/:id", // Ruta para el inicio de sesión
+    controller: UserController,
+    action: "edit" // Acción para manejar la autenticación
+  },
+//   router.patch('/:id', [checkJwt, checkRole(['admin'])], UserController.edit);
+  {
     method: "post", // Método POST para enviar los datos del inicio de sesión
     route: "/change-password", // Ruta para el inicio de sesión
     controller: UserController,
     middleware: [checkJwt],
     action: "changePassword" // Acción para manejar la autenticación
   }
+
+
 
 ]

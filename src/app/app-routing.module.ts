@@ -22,6 +22,12 @@ const routes: Routes = [
       canActivate:[CheckLoginGuard]
   },
   {
+    path: 'register',
+    loadChildren: () =>
+      import('./pages/auth/register/register.module').then((m) => m.RegisterModule),
+      canActivate:[CheckLoginGuard]
+  },
+  {
     path: 'admin',
     loadChildren: () =>
       import('./pages/admin/admin.module').then((m) => m.AdminModule),

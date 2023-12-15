@@ -1,14 +1,12 @@
 <nav class="nav nav-purple-bg justify-content-end">
-    <a class="nav-link active" aria-current="page" *ngIf="!isLogged; else viewLogout" [routerLink]="'/login'">Login</a>
+   <a class="nav-link active" aria-current="page" *ngIf="!isLogged; else viewLogout" [routerLink]="'/login'">Login</a>
+   <a class="nav-link active" aria-current="page" *ngIf="!isLogged; else viewLogout" [routerLink]="'/register'">Register</a>
   </nav>
 
   <ng-template #viewLogout>
+   <a class="nav-link" [routerLink]="'/'">Home</a>
    <a class="nav-link" *ngIf="isAdmin === 'admin'" [routerLink]="'/admin/users'">Gestionar Usuarios</a>
    <a class="nav-link" [routerLink]="'/admin'">Perfil</a>
    <a class="nav-link" (click)="onLogout()">Salir</a>
   </ng-template>
 
-
-  <ng-template #viewAdmin>
-     <button class="btn btn-primary" (click)="onToggleSidenav"> Menu</button>
-  </ng-template>

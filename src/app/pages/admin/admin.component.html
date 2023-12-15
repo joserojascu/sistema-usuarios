@@ -1,3 +1,65 @@
-<p>
-  admin works!
-</p>
+<div class="row justify-content-center mt-5">
+  <div class="col-lg-6">
+  <form [formGroup]="baseForm">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center mb-5" >Actualizar Perfil</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="username" class="form-label">Nombre</label>
+      <input formControlName="firstName" type="text" class="form-control">
+      <div class="text-danger" *ngIf="checkField('firstName')">
+        {{ getErrorMessage('firstName') }}
+      </div>
+    </div>
+    <div class="col">
+      <label for="lastName" class="form-label">Apellido</label>
+      <input formControlName="lastName" type="text" class="form-control">
+      <div class="text-danger" *ngIf="checkField('lastName')">
+        {{ getErrorMessage('lastName') }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="age" class="form-label">Edad</label>
+      <input formControlName="age" type="text" class="form-control">
+      <div class="text-danger" *ngIf="checkField('age')">
+        {{ getErrorMessage('age') }}
+      </div>
+    </div>
+    <div class="col">
+      <label for="phone" class="form-label">Celular</label>
+      <input formControlName="phone" type="text" class="form-control">
+      <div class="text-danger" *ngIf="checkField('phone')">
+        {{ getErrorMessage('phone') }}
+      </div>
+    </div>
+    <div class="col">
+      <label for="genero" class="form-label">Genero</label>
+      <select formControlName="gender" class="form-select">
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+      </select>
+      <div class="text-danger" *ngIf="checkField('gender')">
+        {{ getErrorMessage('gender') }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="password" class="form-label">Contraseña</label>
+      <input formControlName="password" type="password" class="form-control">
+      <!-- <div class="text-danger" *ngIf="checkField('password')">
+        {{ getErrorMessage('password') }}
+      </div> -->
+    </div>
+  </div>
+  <div class="row mt-5">
+      <button type="button" class="btn btn-outline-warning" (click)="actualizar()">Actualizar</button>
+      </div>
+</form>
+</div>
+</div>

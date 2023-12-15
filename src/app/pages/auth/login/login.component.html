@@ -20,6 +20,9 @@
                     <div class="text-danger" *ngIf="isValidField('password')">
                         {{ getErrorMessage('password') }}
                     </div>
+                    <div class="text-danger" *ngIf="isPass">
+                      {{ "Contraseña incorrecta" }}
+                  </div>
                 </div>
                 <div class="text-center">
                     <button [disabled]="loginForm.invalid" type="submit" class="btn iniciar">Iniciar sesión</button>
@@ -28,64 +31,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- 
-
- <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title text-center">LOGIN</h1>
-            <form (ngSubmit)="onLogin()">
-              <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="username"
-                  formControlName="username"
-                  placeholder="Enter your username"
-                  required
-                />
-                <div *ngIf="checkField('username')" class="invalid-feedback">
-                  {{ loginForm.errorMessage }}
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <div class="input-group">
-                  <input
-                    [type]="hide ? 'password' : 'text'"
-                    class="form-control"
-                    id="password"
-                    formControlName="password"
-                    placeholder="Enter your password"
-                    required
-                  />
-                  <button
-                    class="btn btn-outline-secondary"
-                    type="button"
-                    (click)="hide = !hide"
-                  >
-                    <i class="bi bi-eye{{ hide ? '-slash' : '' }}"></i>
-                  </button>
-                </div>
-                <div *ngIf="checkField('password')" class="invalid-feedback">
-                  {{ loginForm.errorMessage }}
-                </div>
-              </div>
-              <button
-                [disabled]="loginForm.baseForm.invalid"
-                type="submit"
-                class="btn btn-primary d-block w-100"
-              >
-                Login
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->

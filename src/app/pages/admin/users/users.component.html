@@ -1,14 +1,21 @@
-<div class="table-responsive">
+<h1 class="text-center mt-5">Usuarios</h1>
+<div class="d-flex justify-content-center">
+<button class="btn btn-outline-dark text-center" (click)="openAgregar()">
+Agregar
+</button>
+</div>
+<div class="table-responsive tableUser text-center">
   <table class="table table-hover">
     <thead>
       <tr>
-        <th (click)="sortTable('cca3')"><i class="fa fa-sort-up"> </i>ID</th>
-        <th (click)="sortTable('capital')">Nombre</th>
-        <th (click)="sortTable('population')">Apellido</th>
-        <th (click)="sortTable('population')">Años</th>
-        <th (click)="sortTable('population')">Celular</th>
-        <th (click)="sortTable('population')">Genero</th>
-        <th (click)="sortTable('population')">Rol</th>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Años</th>
+        <th>Celular</th>
+        <th>Genero</th>
+        <th>Rol</th>
+        <th>Accion</th>
 
 
       </tr>
@@ -21,8 +28,108 @@
         <td>{{users[i].age}}</td>
         <td>{{users[i].phone}}</td>
         <td>{{users[i].gender}}</td>
-        <td>{{users[i].role}}</td>
+        <td>{{users[i].rol}}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary" (click)="openEdit(users[i])" >
+              Editar
+            </button>
+            <button type="button" class="btn btn-outline-danger" (click)="onDelete(users[i])" >
+              Eliminar
+            </button>
+          </div>
+        </td>
+
       </tr>
     </tbody>
   </table>
 </div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="Modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form [formGroup]="baseForm">
+        <div class="modal-header">
+          <h5 *ngIf="!editar" class="modal-title">Crear usuario</h5>
+          <h5 *ngIf="editar" class="modal-title">Editar usuario</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col mb-3">
+              <label for="username" class="form-label">Nombre</label>
+              <input formControlName="firstName" type="text" class="form-control" >
+              <div class="text-danger" *ngIf="checkField('firstName')">
+                {{ getErrorMessage('firstName') }}
+            </div>
+            </div>
+            <div class="col mb-3">
+              <label for="lastName" class="form-label">Apellido</label>
+              <input formControlName="lastName" type="text" class="form-control" >
+              <div class="text-danger" *ngIf="checkField('lastName')">
+                {{ getErrorMessage('lastName') }}
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2 mb-3">
+              <label for="age" class="form-label">Edad</label>
+              <input formControlName="age" type="text" class="form-control" >
+              <div class="text-danger" *ngIf="checkField('age')">
+                {{ getErrorMessage('age') }}
+            </div>
+            </div>
+            <div class="col mb-3">
+              <label for="phone" class="form-label">Celular</label>
+              <input formControlName="phone" type="text" class="form-control"  >
+              <div class="text-danger" *ngIf="checkField('phone')">
+                {{ getErrorMessage('phone') }}
+            </div>
+            </div>
+            <div class="col mb-3">
+              <label for="genero" class="form-label">Genero</label>
+              <select formControlName="gender" class="form-select" >
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+              </select>
+              <div class="text-danger" *ngIf="checkField('gender')">
+                {{ getErrorMessage('gender') }}
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="rol" class="form-label">Rol</label>
+              <select formControlName="rol" class="form-select" >
+                <option value="basic">basic</option>
+                <option value="admin">admin</option>
+              </select>
+              <div class="text-danger" *ngIf="checkField('rol')">
+                {{ getErrorMessage('rol') }}
+            </div>
+            </div>
+            <div class="col mb-3" *ngIf="!editar">
+              <label for="password" class="form-label">Contraseña</label>
+              <input   formControlName="password" type="password" class="form-control" >
+              <div class="text-danger" *ngIf="checkField('password')">
+                {{ getErrorMessage('password') }}
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <ng-template [ngIf]="editar">
+            <button type="button" class="btn btn-primary" (click)="actualizar()">Actualizar</button>
+          </ng-template>
+          
+          <ng-template [ngIf]="!editar">
+            <button type="button" class="btn btn-primary" (click)="crear()">Crear</button>
+          </ng-template>
+        
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   hide =true;
+  isPass = false;
   private isValidEmail = /\S+@\S+\.\s+/;
   private subscription: Subscription = new Subscription();
   loginForm = this.fb.group({
@@ -22,8 +23,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
  constructor(private authSvc: AuthService, private fb:FormBuilder, private router:Router){}
 
-
- ngOnInit():void{ }
+ 
+ ngOnInit():void{}
  ngOnDestroy():void{
   this.subscription.unsubscribe();
  }
@@ -39,8 +40,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   };
   this.subscription.add(
   this.authSvc.login(userData).subscribe((res) => {
+    console.log(res, "res")
     if (res) {
       this.router.navigate(['']);
+    }
+    else {
+      // Si la respuesta es falsa (contraseña incorrecta), mostrar el mensaje
+      console.log("ingrese")
+      this.isPass = true;
     }
   })
   );

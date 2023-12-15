@@ -32,7 +32,7 @@ export class User {
 
     @Column()
     // @IsNotEmpty()
-    role: string
+    rol: string
 
     hashPassword():void{
         const salt = bcrypt.genSaltSync(10);
