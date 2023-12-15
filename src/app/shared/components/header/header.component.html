@@ -1,12 +1,14 @@
-<nav class="nav nav-purple-bg justify-content-end">
-   <a class="nav-link active" aria-current="page" *ngIf="!isLogged; else viewLogout" [routerLink]="'/login'">Login</a>
-   <a class="nav-link active" aria-current="page" *ngIf="!isLogged; else viewLogout" [routerLink]="'/register'">Register</a>
+<nav class="nav nav-purple-bg justify-content-end" *ngIf="!isLogged; else viewLogout">
+   <a class="nav-link active" aria-current="page" [routerLink]="'/login'">Login</a>
+   <a class="nav-link active" aria-current="page"  [routerLink]="'/register'">Register</a>
   </nav>
 
   <ng-template #viewLogout>
+   <nav class="nav nav-purple-bg justify-content-end">
    <a class="nav-link" [routerLink]="'/'">Home</a>
    <a class="nav-link" *ngIf="isAdmin === 'admin'" [routerLink]="'/admin/users'">Gestionar Usuarios</a>
    <a class="nav-link" [routerLink]="'/admin'">Perfil</a>
    <a class="nav-link" (click)="onLogout()">Salir</a>
+</nav>
   </ng-template>
 
