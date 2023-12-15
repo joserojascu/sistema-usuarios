@@ -1,0 +1,74 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+
+      <div class="col-md-12">
+          <h1 class="text-center">Registarse</h1>
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
+              <div class="row">
+            <div class="col mb-3">
+              <label for="username" class="form-label">Nombre</label>
+              <input formControlName="firstName" type="text" class="form-control" >
+              <div class="text-danger" *ngIf="isValidField('firstName')">
+                {{ getErrorMessage('firstName') }}
+            </div>
+            </div>
+            <div class="col mb-3">
+              <label for="lastName" class="form-label">Apellido</label>
+              <input formControlName="lastName" type="text" class="form-control" >
+              <div class="text-danger" *ngIf="isValidField('lastName')">
+                {{ getErrorMessage('lastName') }}
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2 mb-3">
+              <label for="age" class="form-label">Edad</label>
+              <input formControlName="age" type="text" class="form-control" >
+              <div class="text-danger" *ngIf="isValidField('age')">
+                {{ getErrorMessage('age') }}
+            </div>
+            </div>
+            <div class="col mb-3">
+              <label for="phone" class="form-label">Celular</label>
+              <input formControlName="phone" type="text" class="form-control"  >
+              <div class="text-danger" *ngIf="isValidField('phone')">
+                {{ getErrorMessage('phone') }}
+            </div>
+            </div>
+            <div class="col mb-3">
+              <label for="genero" class="form-label">Genero</label>
+              <select formControlName="gender" class="form-select" >
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+              </select>
+              <div class="text-danger" *ngIf="isValidField('gender')">
+                {{ getErrorMessage('gender') }}
+            </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <label for="rol" class="form-label">Rol</label>
+                <select formControlName="rol" class="form-select" >
+                  <option value="basic">basic</option>
+                  <option value="admin">admin</option>
+                </select>
+                <div class="text-danger" *ngIf="isValidField('rol')">
+                  {{ getErrorMessage('rol') }}
+              </div>
+              </div>
+              <div class="col mb-3" >
+                <label for="password" class="form-label">Contraseña</label>
+                <input   formControlName="password" type="password" class="form-control" >
+                <div class="text-danger" *ngIf="isValidField('password')">
+                  {{ getErrorMessage('password') }}
+              </div>
+              </div>
+            </div>
+          </div>
+              <div class="text-center">
+                  <button [disabled]="registerForm.invalid" type="submit" class="btn iniciar">Registrarse</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
